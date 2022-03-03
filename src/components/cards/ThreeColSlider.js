@@ -9,8 +9,8 @@ import 'react-multi-carousel/lib/styles.css';
 
 // import {Carousel} from 'react-bootstrap'
 
-const Container = tw.div`relative`;
-const Content = tw.div`max-w-screen-xl mx-auto py-3 lg:py-3`;
+const Container = tw.div`relative mt-5 lg:mt-10`;
+const Content = tw.div`max-w-screen-xl lg:mx-auto mx-5 py-3 lg:py-3`;
 
 const HeadingWithControl = tw.div`flex flex-col items-center sm:items-stretch sm:flex-row justify-between`;
 const Heading = tw(SectionHeading)``;
@@ -33,10 +33,12 @@ const CardSlider = styled(Slider)`
     ${tw`h-auto flex justify-center mb-1`}
   }
 `;
-const Card = tw.div`h-full flex! flex-col sm:border max-w-sm  relative focus:outline-none`;
+const Card = tw.div`h-full flex! flex-col sm:border max-w-sm sm:rounded-tl-4xl sm:rounded-br-5xl relative focus:outline-none`;
+
+
 const CardImage = styled.div(props => [
   `background-image: url("${props.imageSrc}");`,
-  tw`w-full h-56 sm:h-64 bg-cover bg-center`
+  tw`w-full h-56 sm:h-64 bg-cover bg-center rounded sm:rounded-none sm:rounded-tl-4xl`
 ]);
 
 const TextInfo = tw.div`py-6 sm:px-10 sm:py-6`;
@@ -51,7 +53,7 @@ const RatingsInfo = styled.div`
 `;
 const Rating = tw.span`ml-2 font-bold`;
 
-const Description = tw.p`text-sm leading-loose mt-2 sm:mt-4`;
+const Description = tw.p`text-sm leading-normal mt-2 sm:mt-4`;
 
 const SecondaryInfoContainer = tw.div`flex flex-col sm:flex-row mt-2 sm:mt-4`;
 const IconWithText = tw.div`flex items-center mr-6 my-2 sm:my-0`;
@@ -63,7 +65,7 @@ const IconContainer = styled.div`
 `;
 const Text = tw.div`ml-2 text-sm font-semibold text-gray-800`;
 
-const PrimaryButton = tw(PrimaryButtonBase)`mt-auto sm:text-lg rounded-none w-full py-3`;
+const PrimaryButton = tw(PrimaryButtonBase)`mt-auto sm:text-lg rounded sm:rounded-none sm:rounded-br-4xl w-full py-3`;
 export default () => {
   // useState is used instead of useRef below because we want to re-render when sliderRef becomes available (not null)
   const [sliderRef, setSliderRef] = useState(null);
@@ -90,36 +92,24 @@ export default () => {
   /* Change this according to your needs */
   const cards = [
     {
-      imageSrc: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80",
-      title: "Wyatt Residency",
-      description: "Lorem ipsum dolor sit amet, consectur dolori adipiscing elit, sed do eiusmod tempor nova incididunt ut labore et dolore magna aliqua.",
-      locationText: "Rome, Italy",
-      pricingText: "USD 39/Day",
-      rating: "4.8",
+      imageSrc: "https://imageio.forbes.com/specials-images/imageserve/6023f8c09fb9ec5fb4422702/0x0.jpg?format=jpg&width=1200&fit=bounds",
+      title: "Administrator",
+      description: "Watch Salesforce Administrator Videos to get familiar with configurations. Learn about Object, Fields, Apps, Tabs, Formula, Validation, Data Security, Report, Dashboard and Workflow Rules.",
     },
     {
-      imageSrc: "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80",
-      title: "Soho Paradise",
-      description: "Lorem ipsum dolor sit amet, consectur dolori adipiscing elit, sed do eiusmod tempor nova incididunt ut labore et dolore magna aliqua.",
-      locationText: "Ibiza, Spain",
-      pricingText: "USD 50/Day",
-      rating: 4.9,
+      imageSrc: "https://support.cognigy.com/hc/article_attachments/360024910820/salesforce-crm-header.jpg",
+      title: "Developer",
+      description: "Watch Salesforce Developer videos to learn Apex Programming, Triggers, Apex Test Class, Asynchronous Apex, Apex Integration Services.",
     },
     {
-      imageSrc: "https://images.unsplash.com/photo-1549294413-26f195200c16?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80",
-      title: "Hotel Baja",
-      description: "Lorem ipsum dolor sit amet, consectur dolori adipiscing elit, sed do eiusmod tempor nova incididunt ut labore et dolore magna aliqua.",
-      locationText: "Palo Alto, CA",
-      pricingText: "USD 19/Day",
-      rating: "5.0",
+      imageSrc: "https://www.salesforce.com/blog/wp-content/uploads/sites/2/2020/12/what-does-salesforce-do-header-v2.jpg",
+      title: "Scenarios",
+      description: "Watch Salesforce scenarios based videos to learn how to use configurations and development tools available in salesforce to fulfil client’s business requirements in projects.",
     },
     {
-      imageSrc: "https://images.unsplash.com/photo-1571770095004-6b61b1cf308a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80",
-      title: "Hudak Homes",
-      description: "Lorem ipsum dolor sit amet, consectur dolori adipiscing elit, sed do eiusmod tempor nova incididunt ut labore et dolore magna aliqua.",
-      locationText: "Arizona, RAK",
-      pricingText: "USD 99/Day",
-      rating: 4.5,
+      imageSrc: "https://assets-eu-01.kc-usercontent.com/27bd3334-62dd-01a3-d049-720ae980f906/4db01ddf-17db-4de5-ba83-c697426ed3a2/dentsu-salesforce-isometric.png?q=75&fm=jpg&w=960",
+      title: "Udemy courses",
+      description: "Prepare yourself for Salesforce Administrator and Salesforce Platform Developer 1 Certification.",
     },
   ]
 
@@ -142,6 +132,8 @@ export default () => {
       items: 1
     }
   };
+
+  const mobile = window.innerWidth<768
 
 
 
@@ -173,7 +165,7 @@ export default () => {
 
         <Carousel responsive={responsive}
         swipeable={true}
-        draggable={false}
+        draggable={true}z
         responsive={responsive}
         ssr={true} // means to render carousel on server-side.
         infinite={true}
@@ -185,10 +177,12 @@ export default () => {
         removeArrowOnDeviceType={["tablet", "mobile","desktop"]}
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px"
+        tw="flex flex-row self-stretch items-stretch "
+        
         >
           {cards.map((card, index) => (
             <div>
-              <Card key={index}>
+              <Card key={index} style={{minHeight:mobile?450:550}}>
                 <CardImage imageSrc={card.imageSrc} />
                 <TextInfo>
                   <TitleReviewContainer>
@@ -196,7 +190,10 @@ export default () => {
                   </TitleReviewContainer>
                   <Description>{card.description}</Description>
                 </TextInfo>
-                <PrimaryButton>Book Now</PrimaryButton>
+                <PrimaryButton
+
+                >Learn More
+                </PrimaryButton>
               </Card>
             </div>
           ))}

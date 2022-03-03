@@ -18,7 +18,7 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 const Header = tw.header`
   flex justify-between items-center
-  max-w-screen-xl mx-auto
+   px-0 lg:px-10 z-10
 `;
 
 export const NavLinks = tw.div`inline-block`;
@@ -27,9 +27,9 @@ export const NavLinks = tw.div`inline-block`;
  * hocus:bg-primary-700 will apply the bg-primary-700 class on hover or focus
  */
 export const NavLink = tw.a`
-  text-lg my-2 lg:text-sm lg:mx-6 lg:my-0
+  text-lg lg:text-sm lg:mx-6 lg:my-0
   font-semibold tracking-wide transition duration-300
-  pb-1 border-b-2 border-transparent hover:border-primary-500 hocus:text-primary-500
+  pb-1 border-b-2 border-transparent hover:border-primary-500 hocus:text-primary-900
 `;
 
 export const NavText = tw.p`
@@ -46,10 +46,10 @@ export const PrimaryLink = tw(NavLink)`
 `;
 
 export const LogoLink = styled(NavLink)`
-  ${tw`flex items-center font-black border-b-0 text-2xl! ml-3!`};
+  ${tw`flex items-center font-black border-b-0 text-2xl! ml-3! mr-8 pb-0 py-3 lg:py-5`};
 
   img {
-    ${tw`w-10 mr-3`}
+    ${tw`w-10`}
   }
 `;
 
@@ -58,7 +58,7 @@ export const NavToggle = tw.button`
   lg:hidden z-20 focus:outline-none hocus:text-primary-500 transition duration-300 text-gray-900
 `;
 export const MobileNavLinks = motion(styled.div`
-  ${tw`lg:hidden z-10 fixed top-0 inset-x-0 mx-4 my-6 p-8 border text-center rounded-lg text-gray-900 bg-white`}
+  ${tw`lg:hidden z-10 fixed top-0 inset-x-0 border text-center rounded-lg text-gray-900 bg-white`}
   ${NavLinks} {
     ${tw`flex flex-col items-center`}
   }
@@ -68,7 +68,7 @@ export const DesktopNavLinks = tw.nav`
   hidden lg:flex flex-1 justify-between items-center
 `;
 
-export default ({ roundedHeaderButton = false, logoLink, links, className, collapseBreakpointClass = "lg" }) => {
+export default ({ roundedHeaderButton = false, logoLink, links, className, collapseBreakpointClass = "md",userStyle,buttonTW }) => {
 
   const [anchorEl, setAnchorEl] = useState(null)
   const [open, setOpen] = useState([false, false, false, false, false])
@@ -154,7 +154,7 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
           </div>
         </div>
 
-        <div className="dropdown">
+        {/* <div className="dropdown">
           <NavLink
             className="dropbtn"
           >
@@ -167,6 +167,18 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
             <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>NPSP</NavText></MenuItem>
             <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Marketing</NavText></MenuItem>
           </div>
+        </div> */}
+
+        <div className="dropdown">
+          <NavLink
+            className="dropbtn"
+          >
+            Get ready for Interview <ArrowDropDownIcon style={{ verticalAlign: 'top' }} />
+          </NavLink>
+          <div className="dropdown-content">
+            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Administrator</NavText></MenuItem>
+            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Developer</NavText></MenuItem>
+          </div>
         </div>
 
         <div className="dropdown">
@@ -176,15 +188,15 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
             Udemy Courses <ArrowDropDownIcon style={{ verticalAlign: 'top' }} />
           </NavLink>
           <div className="dropdown-content">
-            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Salesforce Administrator Certification Master Class</NavText></MenuItem>
-            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Salesforce Platform Developer 1 Master Class</NavText></MenuItem>
+            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Salesforce Administrator Certification</NavText></MenuItem>
+            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Salesforce Platform Developer</NavText></MenuItem>
           </div>
         </div>
 
 
       </NavLinks>
       <NavLinks key={2} >
-        <PrimaryLink href="/contact-us/connect" >
+        <PrimaryLink href="/contact-us/connect" tw="text-gray-100 hocus:bg-primary-700 hocus:text-gray-200" style={buttonTW} >
           Contact Us
         </PrimaryLink>
       </NavLinks>
@@ -285,7 +297,7 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
         }
 
 
-        <NavLink
+        {/* <NavLink
           aria-owns={open[3] ? 'Cloud-menu' : null}
           aria-haspopup="true"
           onClick={handleClick}
@@ -308,6 +320,29 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
               <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Marketing</NavText></MenuItem>
             </div>
             : null
+        } */}
+
+
+        <NavLink
+          aria-owns={open[4] ? 'udemy-menu' : null}
+          aria-haspopup="true"
+          onClick={handleClick}
+          name={4}
+          tw="text-black"
+        >
+          Get Ready for Interview <ArrowDropDownIcon />
+        </NavLink>
+        {
+          open[4]
+            ?
+            <div
+              id="udemy-menu"
+              style={dropdownStyle}
+            >
+              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Administrator</NavText></MenuItem>
+              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Developer</NavText></MenuItem>
+            </div>
+            : null
         }
 
 
@@ -327,8 +362,8 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
               id="udemy-menu"
               style={dropdownStyle}
             >
-              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Salesforce Administrator<br/> Certification Master Class</NavText></MenuItem>
-              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Salesforce Platform Developer<br/> 1 Master Class</NavText></MenuItem>
+              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Salesforce Administrator</NavText></MenuItem>
+              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Salesforce Platform Developer</NavText></MenuItem>
             </div>
             : null
         }
@@ -350,7 +385,7 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
 
   const defaultLogoLink = (
     <LogoLink href="/">
-      Study Salesforce
+      SDFC Mentor
     </LogoLink>
   );
 
@@ -358,7 +393,15 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
   links = links || defaultLinks;
 
   return (
-    <Header className={className || "header-light"}>
+    <Header className={className || "header-light"} style={userStyle,
+    {
+      position: 'fixed',
+      top: 0,
+      zIndex: 9999,
+      right: 0,
+      left: 0,
+      backgroundColor: 'white',
+    }}>
       <DesktopNavLinks css={collapseBreakpointCss.desktopNavLinks}>
         {logoLink}
         {links}

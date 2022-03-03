@@ -12,27 +12,38 @@ import { ReactComponent as ChevronRightIcon } from "feather-icons/dist/icons/che
 import { ReactComponent as SvgDecoratorBlob1 } from "../../images/svg-decorator-blob-4.svg";
 import { ReactComponent as SvgDecoratorBlob2 } from "../../images/svg-decorator-blob-5.svg";
 
-import { BsWhatsapp } from 'react-icons/bs'
-import { AiOutlineInstagram } from 'react-icons/ai'
-import { AiFillYoutube } from 'react-icons/ai'
+import { AiOutlineInstagram, AiFillLinkedin, AiOutlineTwitter, AiOutlineWhatsApp, AiFillYoutube } from 'react-icons/ai'
 import { SiUdemy } from 'react-icons/si'
+
+import badge1 from '../../images/badges/image1.png'
+import badge2 from '../../images/badges/image2.png'
+import badge3 from '../../images/badges/image3.png'
+import badge4 from '../../images/badges/image4.png'
+import badge5 from '../../images/badges/image5.png'
+import badge6 from '../../images/badges/image6.png'
+import Sanjay from '../../images/Sanjay.jpg'
+
 
 import "slick-carousel/slick/slick.css";
 
 const Container = tw.div`relative`;
-const Content = tw.div`max-w-screen-xl mx-auto py-5 lg:py-10`;
-const TestimonialsContainer = tw.div`mt-16 lg:mt-0`;
+const Content = tw.div`max-w-screen-xl mx-auto py-0 lg:py-10`;
+const TestimonialsContainer = tw.div`mt-0 bg-gray-lightest p-2 lg:p-10 rounded-3xl shadow-lg`;
 const Testimonials = styled.div``;
-const Testimonial = tw.div`max-w-md lg:max-w-none mx-auto lg:mx-0 flex flex-col items-center lg:items-stretch lg:flex-row`;
+const Testimonial = tw.div`max-w-md lg:max-w-none mx-auto lg:mx-0 flex flex-col items-start lg:flex-row`;
 
 const TestimonialImageSlider = tw(Slider)`w-full lg:w-5/12 flex-shrink-0 `;
 const TestimonialTextSlider = tw(Slider)``;
 const TestimonialText = tw.div`outline-none`;
 
-const ImageAndControlContainer = tw.div`relative outline-none`;
+const ImageAndControlContainer = tw.div`relative outline-none mt-1 lg:mt-10`;
 const Image = styled.div(props => [
   `background-image: url("${props.imageSrc}");`,
-  tw`rounded bg-cover bg-center h-80`
+  tw`rounded bg-cover bg-center h-80 w-80 lg:h-96 lg:w-96 mx-auto`
+]);
+const Badge = styled.div(props => [
+  `background-image: url("${props.imageSrc}");`,
+  tw`rounded bg-cover bg-center h-96`
 ]);
 
 const ControlContainer = tw.div`absolute bottom-0 right-0 bg-gray-100 px-6 py-4 rounded-tl-3xl border`;
@@ -49,11 +60,11 @@ const TextContainer = styled.div(props => [
 ]);
 
 const Subheading = tw(SubheadingBase)`mb-4`;
-const HeadingTitle = tw(SectionHeading)`lg:text-left mb-8 text-center`;
+const HeadingTitle = tw(SectionHeading)`lg:text-left mb-4 text-center`;
 
-const Heading = tw(SectionHeading)`sm:text-3xl md:text-4xl lg:text-5xl mb-10`;
+const Heading = tw(SectionHeading)`sm:text-3xl md:text-4xl lg:text-5xl mb-4 lg:mb-10`;
 
-const Description = tw.p`max-w-md text-center mx-auto lg:mx-0 lg:text-left lg:max-w-none leading-relaxed text-sm sm:text-base lg:text-lg font-medium mt-4 text-secondary-100`;
+const Description = tw.p`max-w-md text-justify mx-auto lg:mx-0  lg:max-w-none leading-relaxed text-sm sm:text-base lg:text-lg font-medium mt-4 text-secondary-100`;
 
 const QuoteContainer = tw.div`relative mt-10 lg:mt-20`;
 const Quote = tw.blockquote`text-center lg:text-left text-sm sm:text-lg lg:text-xl xl:text-2xl`;
@@ -64,7 +75,8 @@ const CustomerName = tw.h5`font-semibold text-xl lg:text-2xl xl:text-3xl text-pr
 const CustomerTitle = tw.p`font-medium text-secondary-100 text-center`;
 
 
-const SocialMediaIcons = tw.p`flex flex-row mt-10 text-primary-500 text-xl justify-center lg:justify-start`;
+const SocialMediaIcons = tw.p`flex flex-row mt-10 text-primary-500 text-3xl justify-center`;
+const BadgeIcons = tw.p`flex flex-row mt-10 text-primary-500 text-3xl justify-center lg:justify-start h-12 lg:h-16`;
 
 const QuotesLeft = tw(QuotesLeftIcon)`w-6 h-6 opacity-75 text-primary-500 inline-block mr-1 -mt-3`;
 const QuotesRight = tw(QuotesRightIcon)`w-6 h-6 opacity-75 text-primary-500 inline-block ml-1 -mt-3`;
@@ -79,7 +91,17 @@ const DecoratorBlob2 = tw(
 export default ({
   subheading = "",
   heading = "Testimonials",
-  description = "Little Description",
+  description = <span tw="text-center">
+    I started my professional journey as an educator. I helped 5000+ engineering students to learn programming languages like C, C++, Java, Web Development using HTML, CSS, JS, PHP and Data Structure & Algorithm.<br /><br />
+
+    After being a University Professor teaching tech courses, I decided to jump into Salesforce Industry. To my surprise, it was all the adventure I was missing in my life.<br /><br />
+
+    Today I have around 15 years of experience which is a mix of College Teaching, Salesforce Training, Salesforce Development and Consultant. <br /><br />
+
+    I am always eager to learn new technologies. I love to enrich the lives of freshers and experienced professionals through my teaching methodology and mentoring.<br /><br />
+
+    Join over thousands of students who have studied from my courses and have successfully built their careers.
+  </span>,
   testimonials = null,
   textOnLeft = false
 }) => {
@@ -90,13 +112,13 @@ export default ({
   const defaultTestimonials = [
     {
       imageSrc:
-        "https://images.unsplash.com/photo-1512100356356-de1b84283e18?ixlib=rb-1.2.1&auto=format&fit=crop&w=1024&q=80",
+        Sanjay,
       profileImageSrc:
         "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3.25&w=512&h=512&q=80",
       quote:
         "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.",
       customerName: "Sanjay Gupta",
-      customerTitle: "Instructor, Salesforce Trainer"
+      customerTitle: "Salesforce Consultant and Instructor"
     }
   ];
 
@@ -110,7 +132,7 @@ export default ({
     <Container>
       <Content>
         {/* <HeadingInfo tw="text-center lg:hidden" subheading={subheading} description={description} /> */}
-        <Heading>About Instructor</Heading>
+        <Heading>About <span tw="text-primary-500">Mentor</span></Heading>
         <TestimonialsContainer>
           <Testimonials>
 
@@ -119,7 +141,15 @@ export default ({
               <TestimonialImageSlider arrows={false} ref={setImageSliderRef} asNavFor={textSliderRef} fade={true}>
                 {testimonials.map((testimonial, index) => (
                   <ImageAndControlContainer key={index}>
-                    <Image imageSrc={testimonial.imageSrc} />
+                    <Image imageSrc={testimonial.imageSrc} style={{borderRadius:'50%'}} />
+                    <BadgeIcons>
+                      <img tw="mx-2" src={badge1} />
+                      <img tw="mx-2" src={badge2} />
+                      <img tw="mx-2" src={badge3} />
+                      <img tw="mx-2" src={badge4} />
+                      <img tw="mx-2" src={badge5} />
+                      <img tw="mx-2" src={badge6} />
+                    </BadgeIcons>
                   </ImageAndControlContainer>
                 ))}
               </TestimonialImageSlider>
@@ -135,11 +165,13 @@ export default ({
                         </CustomerTextInfo>
                       </CustomerInfo>
                       <HeadingInfo subheading={subheading} description={description} />
+
                       <SocialMediaIcons>
-                        <BsWhatsapp tw="mx-3"/>
-                        <AiOutlineInstagram tw="mx-3"/>
-                        <AiFillYoutube tw="mx-3"/>
-                        <SiUdemy tw="mx-3"/>
+                        <AiFillLinkedin tw="mx-3 rounded" />
+                        <AiOutlineTwitter tw="mx-3" />
+                        <AiFillYoutube tw="mx-3" />
+                        <SiUdemy tw="mx-3" />
+                        <AiOutlineWhatsApp tw="mx-3" />
                       </SocialMediaIcons>
                     </TestimonialText>
                   ))}

@@ -17,15 +17,15 @@ module.exports = {
       white: '#fff',
 
       primary: {
-        100: '#a273ff',
-        200: '#935bff',
-        300: '#8344ff',
-        400: '#742cff',
-        500: '#0092DA',
-        600: '#5a13e6',
-        700: '#5011cc',
-        800: '#460fb3',
-        900: '#3c0d99',
+        100: '#fcd497',
+        200: '#fcc16a',
+        300: '#fcb54b',
+        400: '#fca21b',
+        500: '#FF9900',
+        600: '#ea8d02',
+        700: '#d88200',
+        800: '#c47601',
+        900: '#af6a01',
       },
 
       secondary: {
@@ -263,7 +263,7 @@ module.exports = {
       DEFAULT: '1',
     },
     fontFamily: {
-      display: ['Inter', 'system-ui'],
+      display: ['Nunito', 'system-ui'],
       sans: [
         'system-ui',
         '-apple-system',

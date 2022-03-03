@@ -2,9 +2,12 @@ import React from "react";
 import tw from "twin.macro";
 import styled from "styled-components";
 import { css } from "styled-components/macro"; //eslint-disable-line
+import { PrimaryButton as PrimaryButtonBase } from "components/misc/Buttons.js";
 
 import Header, { NavLink, NavLinks, PrimaryLink, LogoLink, NavToggle, DesktopNavLinks } from "../headers/light.js";
 import ResponsiveVideoEmbed from "../../helpers/ResponsiveVideoEmbed.js";
+import serverIllustrationImageSrc from "images/server-illustration-2.svg";
+import { FaYoutube } from 'react-icons/fa';
 
 const StyledHeader = styled(Header)`
   ${tw`pt-8 max-w-none`}
@@ -16,14 +19,14 @@ const StyledHeader = styled(Header)`
   }
 `;
 const Container = styled.div`
-  ${tw`relative -mx-8 -mt-8 bg-center bg-cover`}
+  ${tw`relative bg-center bg-cover mt-0 lg:mt-5`}
   background-image: url("https://images.unsplash.com/photo-1522071901873-411886a10004?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80");
 `;
 
-const OpacityOverlay = tw.div`z-10 absolute inset-0 bg-primary-500 opacity-25`;
+const OpacityOverlay = tw.div` absolute inset-0 bg-gray-900 opacity-25`;
 
-const HeroContainer = tw.div`z-20 relative px-4 sm:px-8 max-w-screen-xl mx-auto`;
-const TwoColumn = tw.div`pt-24 pb-32 px-4 flex justify-between items-center flex-col lg:flex-row`;
+const HeroContainer = tw.div` relative px-4 sm:px-8 max-w-screen-xl mx-auto`;
+const TwoColumn = tw.div`pt-24 pb-32 px-4 flex justify-between items-center flex-col`;
 const LeftColumn = tw.div`flex flex-col items-center lg:block`;
 const RightColumn = tw.div`w-full sm:w-5/6 lg:w-1/2 mt-16 lg:mt-0 lg:pl-8`;
 
@@ -34,11 +37,13 @@ const Heading = styled.h1`
   }
 `;
 
+const PrimaryButton = tw(PrimaryButtonBase)`mt-8 text-sm sm:text-base px-6 py-5 sm:px-10 sm:py-5 inline-block bg-red-600 text-gray-100 hover:bg-red-800`;
+
 const SlantedBackground = styled.span`
   ${tw`relative text-primary-500 px-4 -mx-4 py-2`}
   &::before {
     content: "";
-    ${tw`absolute inset-0 bg-gray-100 transform -skew-x-12 -z-10`}
+    ${tw`absolute inset-0 bg-gray-100 transform -skew-x-12`}
   }
 `;
 
@@ -55,7 +60,15 @@ const StyledResponsiveVideoEmbed = styled(ResponsiveVideoEmbed)`
   }
 `;
 
-export default () => {
+export default (
+  {
+    heading = "Playlist Name",
+    category = "Category name",
+    primaryButtonText = <p tw="flex flex-row justify-center items-center"><FaYoutube /> &nbsp;&nbsp;Watch it on Youtube</p>,
+    primaryButtonUrl = "#",
+    imageSrc = serverIllustrationImageSrc,
+  }
+) => {
   const navLinks = [
     <NavLinks key={1}>
       <NavLink href="#">
@@ -82,23 +95,12 @@ export default () => {
     <Container>
       <OpacityOverlay />
       <HeroContainer>
-        <StyledHeader links={navLinks} />
         <TwoColumn>
-          <LeftColumn>
-            <Notification>We have now launched operations in Europe.</Notification>
+            <Notification>{category}</Notification>
             <Heading>
-              <span>Hire the best</span>
-              <br />
-              <SlantedBackground>Marketing Team.</SlantedBackground>
+              {heading}
             </Heading>
-            <PrimaryAction>Read Customer Stories</PrimaryAction>
-          </LeftColumn>
-          <RightColumn>
-            <StyledResponsiveVideoEmbed
-              url="//player.vimeo.com/video/374265101?title=0&portrait=0&byline=0&autoplay=0&responsive=1"
-              background="transparent"
-            />
-          </RightColumn>
+            <PrimaryButton as="a" href={primaryButtonUrl}>{primaryButtonText}</PrimaryButton>
         </TwoColumn>
       </HeroContainer>
     </Container>

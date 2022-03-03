@@ -5,11 +5,10 @@ import { css } from "styled-components/macro"; //eslint-disable-line
 import { PrimaryButton as PrimaryButtonBase } from "components/misc/Buttons.js";
 
 import LogoImage from "images/logo.svg";
-import { ReactComponent as FacebookIcon } from "images/facebook-icon.svg";
-import { ReactComponent as TwitterIcon } from "images/twitter-icon.svg";
-import { ReactComponent as YoutubeIcon } from "images/youtube-icon.svg";
+import { AiOutlineInstagram, AiFillLinkedin, AiOutlineTwitter, AiOutlineWhatsApp, AiFillYoutube, AiOutlineLinkedin } from 'react-icons/ai'
+import { SiUdemy } from 'react-icons/si'
 
-const Container = tw.div`relative bg-gray-200 text-gray-700 -mb-8 -mx-8 px-8 py-10`;
+const Container = tw.div`relative bg-gray-900 text-gray-100 -mb-8 -mx-8 px-8 py-10`;
 const Content = tw.div`max-w-screen-xl mx-auto relative`;
 const SixColumns = tw.div`flex flex-wrap text-center sm:text-left justify-center sm:justify-start md:justify-between -mt-12`;
 
@@ -34,13 +33,13 @@ const ThreeColRow = tw.div`flex flex-col md:flex-row items-center justify-betwee
 
 const LogoContainer = tw.div`flex items-center justify-center md:justify-start`;
 const LogoImg = tw.img`w-8`;
-const LogoText = tw.h5`ml-2 text-xl font-black tracking-wider text-gray-800`;
+const LogoText = tw.h5`ml-2 text-xl font-black tracking-wider text-gray-100`;
 
 const CopywrightNotice = tw.p`text-center text-sm sm:text-base mt-8 md:mt-0 font-medium text-gray-500`;
 
 const SocialLinksContainer = tw.div`mt-8 md:mt-0 flex`;
 const SocialLink = styled.a`
-  ${tw`cursor-pointer p-2 rounded-full bg-gray-900 text-gray-100 hover:bg-gray-700 transition duration-300 mr-4 last:mr-0`}
+  ${tw`cursor-pointer p-2 rounded-full bg-gray-900 text-gray-100 hover:bg-primary-500 transition duration-300 mr-4 last:mr-0`}
   svg {
     ${tw`w-4 h-4`}
   }
@@ -133,7 +132,7 @@ export default () => {
             </LinkList>
           </Column>
 
-          <Column>
+          {/* <Column>
             <ColumnHeading>Cloud</ColumnHeading>
             <LinkList>
               <LinkListItem>
@@ -153,6 +152,19 @@ export default () => {
               </LinkListItem>
 
             </LinkList>
+          </Column> */}
+
+          <Column>
+            <ColumnHeading>Get Ready for Interview </ColumnHeading>
+            <LinkList>
+              <LinkListItem>
+                <Link href="#">Administrator</Link>
+              </LinkListItem>
+              <LinkListItem>
+                <Link href="#">Developer</Link>
+              </LinkListItem>
+
+            </LinkList>
           </Column>
 
           <Column>
@@ -167,8 +179,8 @@ export default () => {
 
             </LinkList>
           </Column>
-        
-          <SubscribeNewsletterColumn>
+
+          {/* <SubscribeNewsletterColumn>
             <SubscribeNewsletterContainer>
               <ColumnHeading>Subscribe to our Newsletter</ColumnHeading>
               <SubscribeText>
@@ -179,24 +191,30 @@ export default () => {
                 <SubscribeButton type="submit">Subscribe</SubscribeButton>
               </SubscribeForm>
             </SubscribeNewsletterContainer>
-          </SubscribeNewsletterColumn>
+          </SubscribeNewsletterColumn> */}
         </SixColumns>
         <Divider />
         <ThreeColRow>
           <LogoContainer>
-            <LogoImg src={LogoImage} />
-            <LogoText>Study Salesforce</LogoText>
+            {/* <LogoImg src={LogoImage} /> */}
+            <LogoText>&#123; StudySalesforce &#125;</LogoText>
           </LogoContainer>
           <CopywrightNotice>&copy; 2020 Study Salesforce All Rights Reserved.</CopywrightNotice>
           <SocialLinksContainer>
             <SocialLink href="https://facebook.com">
-              <FacebookIcon />
+              <AiFillLinkedin />
             </SocialLink>
             <SocialLink href="https://twitter.com">
-              <TwitterIcon />
+              <AiOutlineTwitter />
             </SocialLink>
             <SocialLink href="https://youtube.com">
-              <YoutubeIcon />
+              <AiFillYoutube />
+            </SocialLink>
+            <SocialLink href="https://youtube.com">
+              <SiUdemy />
+            </SocialLink>
+            <SocialLink href="https://youtube.com">
+              <AiOutlineWhatsApp />
             </SocialLink>
           </SocialLinksContainer>
         </ThreeColRow>

@@ -22,7 +22,7 @@ function CustomToggle({ children, eventKey }) {
             }}>
             <button
                 type="button"
-                tw='font-bold'
+                tw='font-medium'
 
             >
                 {children}
@@ -31,9 +31,9 @@ function CustomToggle({ children, eventKey }) {
                 {
                     arrow
                         ?
-                        <TiArrowSortedDown tw='text-4xl' />
+                        <TiArrowSortedDown tw='text-3xl' />
                         :
-                        <TiArrowSortedUp tw='text-4xl' />
+                        <TiArrowSortedUp tw='text-3xl' />
                 }
             </button>
         </div>
@@ -46,7 +46,7 @@ export default function VideoAccordian() {
             <Accordion>
                 <Card>
                     <Card.Header>
-                        <CustomToggle eventKey="0">Video Title</CustomToggle>
+                        <CustomToggle eventKey="0">1. Video Intro</CustomToggle>
                     </Card.Header>
                     <Accordion.Collapse eventKey="0" style={{
                         marginLeft: 'auto',
@@ -54,7 +54,7 @@ export default function VideoAccordian() {
                     }}>
                         <div tw='flex flex-col justify-center items-center'>
                             <iframe
-                                width={window.innerWidth / 1.3} height={window.innerHeight / 2}
+                                width={window.innerWidth / 1.3} height={window.innerHeight / 1.5}
                                 src="https://www.youtube-nocookie.com/embed/eNZX3tyxK7k"
                                 title="YouTube video player"
                                 frameborder="0"
@@ -67,7 +67,7 @@ export default function VideoAccordian() {
                 </Card>
                 <Card>
                     <Card.Header>
-                        <CustomToggle eventKey="1">Video Title</CustomToggle>
+                        <CustomToggle eventKey="1">2. Video Title</CustomToggle>
                     </Card.Header>
                     <Accordion.Collapse eventKey="1" style={{
                         marginLeft: 'auto',

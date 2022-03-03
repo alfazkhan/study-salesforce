@@ -15,8 +15,8 @@ import logoImageSrc from "images/logo-light.svg";
 import serverIllustrationImageSrc from "images/server-illustration-2.svg";
 import { FaYoutube } from 'react-icons/fa';
 
-const PrimaryBackgroundContainer = tw.div`-mx-8 px-8 bg-primary-900 text-gray-100`;
-const Header = tw(HeaderBase)`max-w-none -mt-8 py-8 -mx-8 px-8`;
+const PrimaryBackgroundContainer = tw.div`-mx-8 px-8 bg-primary-500 text-gray-100`;
+const Header = tw(HeaderBase)``;
 const NavLink = tw(NavLinkBase)`lg:text-gray-100 lg:hocus:text-gray-300 lg:hocus:border-gray-100`;
 const LogoLink = tw(LogoLinkBase)`text-gray-100 hocus:text-gray-300`;
 const PrimaryLink = tw(PrimaryLinkBase)`shadow-raised lg:bg-primary-400 lg:hocus:bg-primary-500`;
@@ -48,7 +48,6 @@ export default ({
   return (
     <PrimaryBackgroundContainer>
       <Content2Xl>
-        <Header />
         <Container>
           <ContentWithVerticalPadding>
             <Row>
