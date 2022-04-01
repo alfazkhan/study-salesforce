@@ -10,11 +10,12 @@ import { SiUdemy } from 'react-icons/si';
 import { FaYoutube } from 'react-icons/fa';
 
 import Avatar from '@mui/material/Avatar';
+import { useHistory } from "react-router";
 
 
 
 const StyledHeader = styled(Header)`
-  ${tw`justify-between lg:mx-0 lg:mt-0`}
+  ${tw`justify-between`}
   ${LogoLink} {
     ${tw``}
   }
@@ -65,10 +66,10 @@ export default ({
     </>
   ),
   description = "Learn Salesforce Administrator and Development. ",
-  primaryActionUrl = "#",
+  primaryActionUrl = "https://www.youtube.com/c/SanjayGupta_TechSchool/",
   primaryActionText = <p tw="flex flex-row justify-center items-center"><FaYoutube /> &nbsp;&nbsp;Subscribe</p>,
-  secondaryActionUrl = "#",
-  secondaryActionText = <p tw="flex flex-row justify-center items-baseline"><SiUdemy />&nbsp;&nbsp; Udemy</p>,
+  secondaryActionUrl = "https://www.udemy.com/user/sanjay-gupta-354/",
+  secondaryActionText = <p tw="flex flex-row justify-center items-baseline"><SiUdemy />&nbsp;&nbsp; Udemy Courses</p>,
   avatarStyle = {
     border: '1px solid #F69603',
     height: 80,
@@ -78,9 +79,18 @@ export default ({
     textAlign: 'center',
     marginRight: mobile ? 0.5 : 3,
     marginLeft: mobile ? 0.5 : 3,
-    marginTop: mobile ? 1 : 2
+    marginTop: mobile ? 1 : 2,
+    cursor:'pointer'
   }
-}) => {
+},props) => {
+
+  const history = useHistory();
+  console.log(history)
+
+  const handleAvatarClick=(e)=>{
+    console.log(e.target.textContent)
+  }
+
   return (
     <Container>
       <StyledHeader collapseBreakpointClass="sm" />
@@ -94,23 +104,24 @@ export default ({
             <Heading>{heading}</Heading>
             {/* <Paragraph>{description}</Paragraph> */}
             <CourseButtons>
-              <Avatar sx={avatarStyle} alt="Remy Sharp">Admin</Avatar>
-              <Avatar sx={avatarStyle} alt="Remy Sharp">Flows</Avatar>
-              <Avatar sx={avatarStyle} alt="Remy Sharp">Reports</Avatar>
-              <Avatar sx={avatarStyle} alt="Remy Sharp">Data <br />Security</Avatar>
-              <Avatar sx={avatarStyle} alt="Remy Sharp">Apex</Avatar>
-              <Avatar sx={avatarStyle} alt="Remy Sharp">Apex <br />Tests</Avatar>
-              <Avatar sx={avatarStyle} alt="Remy Sharp">Trigger</Avatar>
-              <Avatar sx={avatarStyle} alt="Remy Sharp">Async <br />Apex</Avatar>
-              <Avatar sx={avatarStyle} alt="Remy Sharp">Aura</Avatar>
-              <Avatar sx={avatarStyle} alt="Remy Sharp">LWC</Avatar>
+              <Avatar sx={avatarStyle} onClick={()=>{history.push('/Administrator/Lightning-Experience')}} alt="Remy Sharp">Admin</Avatar>
+              <Avatar sx={avatarStyle} onClick={()=>{history.push('/Administrator/Flow-Builder')}} alt="Remy Sharp">Flows</Avatar>
+              <Avatar sx={avatarStyle} onClick={()=>{history.push('Administrator/Reports-&-Dashboards')}} alt="Remy Sharp">Reports</Avatar>
+              <Avatar sx={avatarStyle} onClick={()=>{history.push('Administrator/Data-Security')}} alt="Remy Sharp">Data <br />Security</Avatar>
+              <Avatar sx={avatarStyle} onClick={()=>{history.push('Developer/Apex')}} alt="Remy Sharp">Apex</Avatar>
+              <Avatar sx={avatarStyle} onClick={()=>{history.push('Developer/Apex-Tests')}} alt="Remy Sharp">Apex <br />Tests</Avatar>
+              <Avatar sx={avatarStyle} onClick={()=>{history.push('Developer/Trigger')}} alt="Remy Sharp">Trigger</Avatar>
+              <Avatar sx={avatarStyle} onClick={()=>{history.push('Developer/Asynchronous-Apex')}} alt="Remy Sharp">Async <br />Apex</Avatar>
+              <Avatar sx={avatarStyle} onClick={()=>{history.push('/Developer/Aura')}} alt="Remy Sharp">Aura</Avatar>
+              <Avatar sx={avatarStyle} onClick={()=>{history.push('/Scenarios/LWC')}} alt="Remy Sharp">LWC</Avatar>
             </CourseButtons>
             <Actions>
-              <a href={primaryActionUrl}
+              <a href={primaryActionUrl} target="_0"
                 className="action primaryAction">
                 {primaryActionText}
               </a>
-              <a href={secondaryActionUrl}
+              
+              <a href={secondaryActionUrl} target="_0"
                 className="action secondaryAction">
                 {secondaryActionText}
               </a>

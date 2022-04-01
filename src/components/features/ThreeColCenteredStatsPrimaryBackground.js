@@ -29,25 +29,25 @@ export default ({
   youtubeStats = [
     {
       key: "Subscribers",
-      value: "31K+",
+      value: "32K+",
     },
     {
       key: "Views",
-      value: "4.3 M+",
+      value: "4.4M+",
     },
     {
       key: "Watch Time(hours)",
-      value: "183K+",
+      value: "200K+",
     },
   ],
   udemyStats = [
     {
       key: "Total Students",
-      value: "4200+",
+      value: "4500+",
     },
     {
       key: "Reviews",
-      value: "150+",
+      value: "200+",
     },
     {
       key: "Rating",

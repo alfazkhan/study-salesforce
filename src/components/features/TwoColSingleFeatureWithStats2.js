@@ -60,14 +60,18 @@ export default ({
   subheading = "Our Track Record",
   heading = (
     <>
-     Begin Your  <wbr /> <span tw="text-primary-500">Salesforce Journey</span>
+      Begin Your  <wbr /><br /><span tw="text-primary-500">Salesforce Journey!</span>
     </>
   ),
-  description = "Are you confused and wondering how to ramp yourself up in the Salesforce Ecosystem? Don’t worry at all! Here you can find categorised videos to learn Salesforce. So, Begin your Administrator and Developer Journey with Sanjay Gupta.",
+  description = <span>
+    Are you confused and wondering how to ramp yourself up in the Salesforce Ecosystem? Don’t worry at all! <br />
+    Here you can find categorised videos to learn Salesforce.<br />
+    So, Begin your Administrator and Developer Journey with Sanjay Gupta.
+  </span>,
   primaryActionText = <p tw="flex flex-row justify-center items-center"><FaYoutube /> &nbsp;&nbsp;Subscribe</p>,
-  primaryActionUrl = "https://timerse.com",
-  secondaryActionText = <p tw="flex flex-row justify-center items-baseline"><SiUdemy />&nbsp;&nbsp; Udemy</p>,
-  secondaryActionUrl = "asas",
+  primaryActionUrl = "https://www.youtube.com/c/SanjayGupta_TechSchool/about",
+  secondaryActionText = <p tw="flex flex-row justify-center items-baseline"><SiUdemy />&nbsp;&nbsp; Udemy Courses</p>,
+  secondaryActionUrl = "https://www.udemy.com/user/sanjay-gupta-354/",
   imageSrc = StatsIllustrationSrc,
   imageCss = null,
   imageContainerCss = null,
@@ -98,9 +102,11 @@ export default ({
 
   return (
     <Container>
-      <a href="https://my.saasguru.co/salesforce-cert-prep?utm_source=studysalesforce&utm_medium=banner&utm_campaign=sfdc" target="_0"> 
-            <img src={sassguru} style={{ height: 130, width: 600,aspectRatio: 'auto 600/130' }} tw="mx-auto mt-10" />
-          </a>
+      <div className="container col-lg-6 col-sm-12" tw='my-5'>
+        <a href="https://my.saasguru.co/salesforce-cert-prep?utm_source=studysalesforce&utm_medium=banner&utm_campaign=sfdc" target="_0">
+          <img src={sassguru} style={{ height: 130, width: 600, aspectRatio: 'auto 600/130' }} tw="mx-auto" />
+        </a>
+      </div>
       <TwoColumn css={!imageInsideDiv && tw`md:items-center`}>
         <ImageColumn css={imageContainerCss}>
           {imageInsideDiv ? <Image imageSrc={imageSrc} css={imageCss} /> : <img src={imageSrc} css={imageCss} alt="" />}
@@ -121,12 +127,13 @@ export default ({
             </Statistics>
             <div tw="flex flex-row justify-evenly lg:justify-start">
               <Actions>
-                <a href={primaryActionUrl}
-                className="action primaryAction">
+                <a href={primaryActionUrl} target="_0"
+                  className="action primaryAction">
                   {primaryActionText}
                 </a>
-                <a href={secondaryActionUrl}
-                className="action secondaryAction">
+
+                <a href={secondaryActionUrl} target="_0"
+                  className="action secondaryAction">
                   {secondaryActionText}
                 </a>
               </Actions>

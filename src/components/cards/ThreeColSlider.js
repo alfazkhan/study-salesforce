@@ -7,6 +7,11 @@ import { PrimaryButton as PrimaryButtonBase } from "components/misc/Buttons";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
+import Admin from 'images/Card-Graphics/Admin.png'
+import Developer from 'images/Card-Graphics/Developer.png'
+import Scenario from 'images/Card-Graphics/Scenario.png'
+import { useHistory } from "react-router-dom";
+
 // import {Carousel} from 'react-bootstrap'
 
 const Container = tw.div`relative mt-5 lg:mt-10`;
@@ -38,7 +43,7 @@ const Card = tw.div`h-full flex! flex-col sm:border max-w-sm sm:rounded-tl-4xl s
 
 const CardImage = styled.div(props => [
   `background-image: url("${props.imageSrc}");`,
-  tw`w-full h-56 sm:h-64 bg-cover bg-center rounded sm:rounded-none sm:rounded-tl-4xl`
+  tw`w-full h-56 sm:h-64 bg-contain bg-no-repeat rounded sm:rounded-none sm:rounded-tl-4xl`
 ]);
 
 const TextInfo = tw.div`py-6 sm:px-10 sm:py-6`;
@@ -65,7 +70,7 @@ const IconContainer = styled.div`
 `;
 const Text = tw.div`ml-2 text-sm font-semibold text-gray-800`;
 
-const PrimaryButton = tw(PrimaryButtonBase)`mt-auto sm:text-lg rounded sm:rounded-none sm:rounded-br-4xl w-full py-3`;
+const PrimaryButton = tw.a`mt-auto sm:text-lg rounded sm:rounded-none sm:rounded-br-4xl w-full py-3 px-8 py-3 font-bold rounded bg-primary-500 text-gray-100 hocus:bg-primary-700 hocus:text-gray-200 focus:shadow-outline focus:outline-none transition duration-300`;
 export default () => {
   // useState is used instead of useRef below because we want to re-render when sliderRef becomes available (not null)
   const [sliderRef, setSliderRef] = useState(null);
@@ -92,24 +97,28 @@ export default () => {
   /* Change this according to your needs */
   const cards = [
     {
-      imageSrc: "https://imageio.forbes.com/specials-images/imageserve/6023f8c09fb9ec5fb4422702/0x0.jpg?format=jpg&width=1200&fit=bounds",
+      imageSrc: Admin,
       title: "Administrator",
       description: "Watch Salesforce Administrator Videos to get familiar with configurations. Learn about Object, Fields, Apps, Tabs, Formula, Validation, Data Security, Report, Dashboard and Workflow Rules.",
+      link:""
     },
     {
-      imageSrc: "https://support.cognigy.com/hc/article_attachments/360024910820/salesforce-crm-header.jpg",
+      imageSrc: Developer,
       title: "Developer",
       description: "Watch Salesforce Developer videos to learn Apex Programming, Triggers, Apex Test Class, Asynchronous Apex, Apex Integration Services.",
+      link:""
     },
     {
-      imageSrc: "https://www.salesforce.com/blog/wp-content/uploads/sites/2/2020/12/what-does-salesforce-do-header-v2.jpg",
+      imageSrc: Scenario,
       title: "Scenarios",
       description: "Watch Salesforce scenarios based videos to learn how to use configurations and development tools available in salesforce to fulfil client’s business requirements in projects.",
+      link:""
     },
     {
       imageSrc: "https://assets-eu-01.kc-usercontent.com/27bd3334-62dd-01a3-d049-720ae980f906/4db01ddf-17db-4de5-ba83-c697426ed3a2/dentsu-salesforce-isometric.png?q=75&fm=jpg&w=960",
       title: "Udemy courses",
-      description: "Prepare yourself for Salesforce Administrator and Salesforce Platform Developer 1 Certification.",
+      description: "Prepare yourself for Administrator and Platform Developer 1 Certification.",
+      link:"https://www.udemy.com/user/sanjay-gupta-354/"
     },
   ]
 
@@ -133,7 +142,10 @@ export default () => {
     }
   };
 
-  const mobile = window.innerWidth<768
+  const mobile = window.innerWidth < 768
+
+  const history = useHistory()
+  console.log(history)
 
 
 
@@ -164,25 +176,25 @@ export default () => {
         </CardSlider> */}
 
         <Carousel responsive={responsive}
-        swipeable={true}
-        draggable={true}z
-        responsive={responsive}
-        ssr={true} // means to render carousel on server-side.
-        infinite={true}
-        autoPlay={true}
-        autoPlaySpeed={1000}
-        keyBoardControl={true}
-        transitionDuration={3000}
-        containerClass="carousel-container"
-        removeArrowOnDeviceType={["tablet", "mobile","desktop"]}
-        dotListClass="custom-dot-list-style"
-        itemClass="carousel-item-padding-40-px"
-        tw="flex flex-row self-stretch items-stretch "
-        
+          swipeable={true}
+          draggable={true} 
+          responsive={responsive}
+          ssr={true} // means to render carousel on server-side.
+          infinite={true}
+          autoPlay={true}
+          autoPlaySpeed={1000}
+          keyBoardControl={true}
+          transitionDuration={3000}
+          containerClass="carousel-container"
+          removeArrowOnDeviceType={["tablet", "mobile", "desktop"]}
+          dotListClass="custom-dot-list-style"
+          itemClass="carousel-item-padding-40-px"
+          tw="flex flex-row self-stretch items-stretch "
+
         >
           {cards.map((card, index) => (
             <div>
-              <Card key={index} style={{minHeight:mobile?450:550}}>
+              <Card key={index} style={{ minHeight: mobile ? 450 : 550 }}>
                 <CardImage imageSrc={card.imageSrc} />
                 <TextInfo>
                   <TitleReviewContainer>
@@ -191,7 +203,8 @@ export default () => {
                   <Description>{card.description}</Description>
                 </TextInfo>
                 <PrimaryButton
-
+                href={card.link===""?"#connect":card.link}
+                target={card.link===""?"":"_0"}
                 >Learn More
                 </PrimaryButton>
               </Card>

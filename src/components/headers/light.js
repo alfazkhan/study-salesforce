@@ -27,7 +27,7 @@ export const NavLinks = tw.div`inline-block`;
  * hocus:bg-primary-700 will apply the bg-primary-700 class on hover or focus
  */
 export const NavLink = tw.a`
-  text-lg lg:text-sm lg:mx-6 lg:my-0
+  text-lg lg:text-sm lg:mx-1 my-2 lg:my-0
   font-semibold tracking-wide transition duration-300
   pb-1 border-b-2 border-transparent hover:border-primary-500 hocus:text-primary-900
 `;
@@ -60,7 +60,7 @@ export const NavToggle = tw.button`
 export const MobileNavLinks = motion(styled.div`
   ${tw`lg:hidden z-10 fixed top-0 inset-x-0 border text-center rounded-lg text-gray-900 bg-white`}
   ${NavLinks} {
-    ${tw`flex flex-col items-center`}
+    ${tw`flex flex-col items-center mt-10`}
   }
 `);
 
@@ -68,18 +68,20 @@ export const DesktopNavLinks = tw.nav`
   hidden lg:flex flex-1 justify-between items-center
 `;
 
-export default ({ roundedHeaderButton = false, logoLink, links, className, collapseBreakpointClass = "md",userStyle,buttonTW }) => {
+export default ({ roundedHeaderButton = false, logoLink, links, className, collapseBreakpointClass = "md", userStyle, buttonTW }) => {
 
   const [anchorEl, setAnchorEl] = useState(null)
   const [open, setOpen] = useState([false, false, false, false, false])
   const [action, SetAction] = useState(false)
   const Mobile = window.innerWidth < 768
 
+  const { showNavLinks, animation, toggleNavbar } = useAnimatedNavToggler();
+
   const handleClick = (event) => {
 
     const link = event.target.name
     setAnchorEl(event.currentTarget)
-    const temp = [false, false, false, false, false]
+    const temp = [false, false, false, false, false, false]
     temp[link] = true
     setOpen(temp)
     console.log(temp)
@@ -87,7 +89,9 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
   };
 
   const handleRequestClose = () => {
-    setOpen([false, false, false, false, false])
+    setOpen([false, false, false, false, false, false])
+    toggleNavbar()
+
   };
 
   const handleAction = () => {
@@ -108,16 +112,16 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
           <NavLink
             className="dropbtn"
           >
-            Administrator <ArrowDropDownIcon style={{ verticalAlign: 'top' }} />
+            Adminstrator <ArrowDropDownIcon style={{ verticalAlign: 'top' }} />
           </NavLink>
           <div className="dropdown-content">
-            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Classic</NavText></MenuItem>
-            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Lightning Experience</NavText></MenuItem>
-            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Data Security</NavText></MenuItem>
-            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Workflow Rule</NavText></MenuItem>
-            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Reports & Dashboards</NavText></MenuItem>
-            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Process Builder</NavText></MenuItem>
-            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Flow Builder</NavText></MenuItem>
+            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Adminstrator/Classic"><NavText>Classic</NavText></MenuItem>
+            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Adminstrator/Lightning-Experience"><NavText>Lightning Experience</NavText></MenuItem>
+            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Adminstrator/Data-Security"><NavText>Data Security</NavText></MenuItem>
+            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Adminstrator/Workflow-Rule"><NavText>Workflow Rule</NavText></MenuItem>
+            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Adminstrator/Reports-&-Dashboards"><NavText>Reports & Dashboards</NavText></MenuItem>
+            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Adminstrator/Process-Builder"><NavText>Process Builder</NavText></MenuItem>
+            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Adminstrator/Flow-Builder"><NavText>Flow Builder</NavText></MenuItem>
           </div>
         </div>
 
@@ -128,12 +132,12 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
             Developer <ArrowDropDownIcon style={{ verticalAlign: 'top' }} />
           </NavLink>
           <div className="dropdown-content">
-            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Apex</NavText></MenuItem>
-            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Trigger</NavText></MenuItem>
-            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Apex Tests</NavText></MenuItem>
-            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Asynchronous Apex</NavText></MenuItem>
-            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Lightning Aura Component</NavText></MenuItem>
-            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Lightning Web Component</NavText></MenuItem>
+            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Developer/Apex"><NavText>Apex</NavText></MenuItem>
+            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Developer/Trigger"><NavText>Trigger</NavText></MenuItem>
+            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Developer/Apex-Tests"><NavText>Apex Tests</NavText></MenuItem>
+            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Developer/Asynchronous-Apex"><NavText>Asynchronous Apex</NavText></MenuItem>
+            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Developer/Lightning-Aura-Component"><NavText>Lightning Aura Component</NavText></MenuItem>
+            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Developer/Lightning-Web-Component"><NavText>Lightning Web Component</NavText></MenuItem>
           </div>
         </div>
 
@@ -144,13 +148,13 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
             Scenarios <ArrowDropDownIcon style={{ verticalAlign: 'top' }} />
           </NavLink>
           <div className="dropdown-content">
-            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Process Builder</NavText></MenuItem>
-            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Flow Builder</NavText></MenuItem>
-            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Apex</NavText></MenuItem>
-            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Asynchronous Apex</NavText></MenuItem>
-            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Trigger and Test Class</NavText></MenuItem>
-            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Aura</NavText></MenuItem>
-            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>LWC</NavText></MenuItem>
+            {/* <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Scenarios/Process-Builder"><NavText>Process Builder</NavText></MenuItem> */}
+            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Scenarios/Flow-Builder"><NavText>Flow Builder</NavText></MenuItem>
+            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Scenarios/Apex"><NavText>Apex</NavText></MenuItem>
+            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Scenarios/Asynchronous-Apex"><NavText>Asynchronous Apex</NavText></MenuItem>
+            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Scenarios/Trigger-and-Test-Class"><NavText>Trigger and Test Class</NavText></MenuItem>
+            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Scenarios/Aura"><NavText>Aura</NavText></MenuItem>
+            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Scenarios/LWC"><NavText>LWC</NavText></MenuItem>
           </div>
         </div>
 
@@ -173,11 +177,12 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
           <NavLink
             className="dropbtn"
           >
-            Get ready for Interview <ArrowDropDownIcon style={{ verticalAlign: 'top' }} />
+            Get ready for Interview<ArrowDropDownIcon style={{ verticalAlign: 'top' }} />
           </NavLink>
           <div className="dropdown-content">
-            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Administrator</NavText></MenuItem>
-            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Developer</NavText></MenuItem>
+            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Interview-Preparation/Administrator"><NavText>Administrator</NavText></MenuItem>
+            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Interview-Preparation/Developer"><NavText>Developer</NavText></MenuItem>
+            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Interview-Preparation/Q&A"><NavText>Q & A</NavText></MenuItem>
           </div>
         </div>
 
@@ -185,36 +190,41 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
           <NavLink
             className="dropbtn"
           >
-            Udemy Courses <ArrowDropDownIcon style={{ verticalAlign: 'top' }} />
+            Certification Courses <ArrowDropDownIcon style={{ verticalAlign: 'top' }} />
           </NavLink>
           <div className="dropdown-content">
-            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Salesforce Administrator Certification</NavText></MenuItem>
-            <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Salesforce Platform Developer</NavText></MenuItem>
+            <a target="_0" href="https://kadge.io/admin201">
+              <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} ><NavText>Administrator Certification</NavText></MenuItem>
+            </a>
+            <a target="_0" href="https://kadge.io/pd1">
+              <MenuItem onMouseOver={handleAction} onClick={handleRequestClose} ><NavText>Platform Developer-1</NavText></MenuItem>
+            </a>
           </div>
         </div>
 
 
       </NavLinks>
       <NavLinks key={2} >
-        <PrimaryLink href="/contact-us/connect" tw="text-gray-100 hocus:bg-primary-700 hocus:text-gray-200" style={buttonTW} >
-          Contact Us
+        <PrimaryLink href="/#connect" tw="text-gray-100 hocus:bg-primary-700 hocus:text-gray-200" style={buttonTW} >
+          Let’s Connect
         </PrimaryLink>
       </NavLinks>
     </>
   ];
 
-  const dropdownStyle={
+  const dropdownStyle = {
     backgroundColor: '#Fff',
     border: '1px solid #243E63',
-    width:'100%',
-    justifyContent:'center',
-    textAlign:'center'
+    width: '100%',
+    justifyContent: 'center',
+    textAlign: 'center'
+
   }
 
 
   const mobileLinks = [
     <>
-      <NavLinks key={1} style={{zIndex:99999}}>
+      <NavLinks key={1} style={{ zIndex: 99999 }}>
         <NavLink
           aria-owns={open[0] ? 'Administrator-menu' : null}
           aria-haspopup="true"
@@ -222,7 +232,7 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
           name={0}
           tw="text-black"
         >
-          Administrator <ArrowDropDownIcon />
+          Adminstrator <ArrowDropDownIcon />
         </NavLink>
         {
           open[0]
@@ -232,13 +242,13 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
               style={dropdownStyle}
 
             >
-              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Classic</NavText></MenuItem>
-              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Lightning Experience</NavText></MenuItem>
-              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Data Security</NavText></MenuItem>
-              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Workflow Rule</NavText></MenuItem>
-              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Reports & Dashboards</NavText></MenuItem>
-              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Process Builder</NavText></MenuItem>
-              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Flow Builder</NavText></MenuItem>
+              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Adminstrator/Classic"><NavText>Classic</NavText></MenuItem>
+              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Adminstrator/Lightning-Experience"><NavText>Lightning Experience</NavText></MenuItem>
+              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Adminstrator/Data-Security"><NavText>Data Security</NavText></MenuItem>
+              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Adminstrator/Workflow-Rule"><NavText>Workflow Rule</NavText></MenuItem>
+              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Adminstrator/Reports-&-Dashboards"><NavText>Reports & Dashboards</NavText></MenuItem>
+              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Adminstrator/Process-Builder"><NavText>Process Builder</NavText></MenuItem>
+              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Adminstrator/Flow-Builder"><NavText>Flow Builder</NavText></MenuItem>
             </div>
             : null
         }
@@ -258,12 +268,12 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
               id="Developer-menu"
               style={dropdownStyle}
             >
-              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Apex</NavText></MenuItem>
-              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Trigger</NavText></MenuItem>
-              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Apex Tests</NavText></MenuItem>
-              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Asynchronous Apex</NavText></MenuItem>
-              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Lightning Aura Component</NavText></MenuItem>
-              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Lightning Web Component</NavText></MenuItem>
+              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Developer/Apex"><NavText>Apex</NavText></MenuItem>
+              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Developer/Trigger"><NavText>Trigger</NavText></MenuItem>
+              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Developer/Apex-Tests"><NavText>Apex Tests</NavText></MenuItem>
+              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Developer/Asynchronous-Apex"><NavText>Asynchronous Apex</NavText></MenuItem>
+              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Developer/Lightning-Aura-Component"><NavText>Lightning Aura Component</NavText></MenuItem>
+              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Developer/Lightning-Web-Component"><NavText>Lightning Web Component</NavText></MenuItem>
 
             </div>
             : null
@@ -285,19 +295,19 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
               id="Scenarios-menu"
               style={dropdownStyle}
             >
-              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Process Builder</NavText></MenuItem>
-              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Flow Builder</NavText></MenuItem>
-              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Apex</NavText></MenuItem>
-              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Asynchronous Apex</NavText></MenuItem>
-              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Trigger and Test Class</NavText></MenuItem>
-              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Aura</NavText></MenuItem>
-              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>LWC</NavText></MenuItem>
+              {/* <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Scenarios/Process-Builder" ><NavText>Process Builder</NavText></MenuItem> */}
+              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Scenarios/Flow-Builder" ><NavText>Flow Builder</NavText></MenuItem>
+              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Scenarios/Apex" ><NavText>Apex</NavText></MenuItem>
+              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Scenarios/Asynchronous-Apex" ><NavText>Asynchronous Apex</NavText></MenuItem>
+              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Scenarios/Trigger-and-Test-Class" ><NavText>Trigger and Test Class</NavText></MenuItem>
+              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Scenarios/Aura"><NavText>Aura</NavText></MenuItem>
+              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Scenarios/LWC"><NavText>LWC</NavText></MenuItem>
             </div>
             : null
         }
 
-
-        {/* <NavLink
+{/* 
+        <NavLink
           aria-owns={open[3] ? 'Cloud-menu' : null}
           aria-haspopup="true"
           onClick={handleClick}
@@ -339,31 +349,32 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
               id="udemy-menu"
               style={dropdownStyle}
             >
-              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Administrator</NavText></MenuItem>
-              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Developer</NavText></MenuItem>
+              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Interview-Preparation/Administrator"><NavText>Administrator</NavText></MenuItem>
+              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Interview-Preparation/Developer"><NavText>Developer</NavText></MenuItem>
+              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/Interview-Preparation/Q&A"><NavText>Q & A</NavText></MenuItem>
             </div>
             : null
         }
 
 
         <NavLink
-          aria-owns={open[4] ? 'udemy-menu' : null}
+          aria-owns={open[5] ? 'udemy-menu' : null}
           aria-haspopup="true"
           onClick={handleClick}
           name={4}
           tw="text-black"
         >
-          Udemy Courses <ArrowDropDownIcon />
+          Certification Courses <ArrowDropDownIcon />
         </NavLink>
         {
-          open[4]
+          open[5]
             ?
             <div
               id="udemy-menu"
               style={dropdownStyle}
             >
-              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Salesforce Administrator</NavText></MenuItem>
-              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="/playlist/name"><NavText>Salesforce Platform Developer</NavText></MenuItem>
+              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="https://kadge.io/admin201"><NavText>Administrator</NavText></MenuItem>
+              <MenuItem onClick={() => { handleRequestClose(); toggleNavbar(); }} onMouseOver={handleAction} onClick={handleRequestClose} component={Link} to="https://kadge.io/pd1"><NavText>Platform Developer-1</NavText></MenuItem>
             </div>
             : null
         }
@@ -373,24 +384,35 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
 
 
       <NavLinks key={2} >
-        <PrimaryLink href="/contact-us/connect" >
+        <PrimaryLink href="/#connect" >
           Contact Us
         </PrimaryLink>
       </NavLinks>
     </>
   ];
 
-  const { showNavLinks, animation, toggleNavbar } = useAnimatedNavToggler();
+
   const collapseBreakpointCss = collapseBreakPointCssMap[collapseBreakpointClass];
 
   const defaultLogoLink = (
     <LogoLink href="/">
-      SDFC Mentor
+      &#123; StudySalesforce &#125;
     </LogoLink>
   );
 
   logoLink = logoLink || defaultLogoLink;
   links = links || defaultLinks;
+
+  const [colorChange, setColorchange] = useState(window.scrollY >= 80);
+  const changeNavbarColor = () => {
+    if (window.scrollY >= 80) {
+      setColorchange(true);
+    }
+    else {
+      setColorchange(false);
+    }
+  };
+  window.addEventListener('scroll', changeNavbarColor);
 
   return (
     <Header className={className || "header-light"} style={userStyle,
@@ -400,7 +422,9 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
       zIndex: 9999,
       right: 0,
       left: 0,
-      backgroundColor: 'white',
+      backgroundColor: colorChange ? '#1A202C' : 'white',
+      color: colorChange ? 'white' : '#1A202C',
+      transition: `0.4s all ease`
     }}>
       <DesktopNavLinks css={collapseBreakpointCss.desktopNavLinks}>
         {logoLink}
@@ -415,7 +439,7 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
           {mobileLinks}
         </MobileNavLinks>
         <NavToggle onClick={toggleNavbar} className={showNavLinks ? "open" : "closed"} >
-          {showNavLinks ? <CloseIcon tw="w-6 h-6 mr-10 mt-5 text-red-500" /> : <MenuIcon tw="w-6 h-6 mr-5 text-gray-900" />}
+          {showNavLinks ? <CloseIcon tw="w-6 h-6 mr-10 mt-5 text-red-500" /> : <MenuIcon tw="w-6 h-6 mr-5" style={{ color: colorChange ? 'white' : '#1A202C' }} />}
         </NavToggle>
       </MobileNavLinksContainer>
     </Header>

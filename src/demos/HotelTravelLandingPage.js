@@ -12,14 +12,17 @@ import Testimonial from "components/testimonials/TwoColumnWithImageAndProfilePic
 import FAQ from "components/faqs/SimpleWithSideImage.js";
 import SubscribeNewsLetterForm from "components/forms/SimpleSubscribeNewsletter.js";
 import Footer from "components/footers/FiveColumnWithInputForm";
+import { withRouter } from "react-router-dom";
+import PopUp from "components/popUp";
+import Feedback from "components/misc/Feedback";
 
-export default () => (
+const HotelTravelLandingPage = () => (
   <AnimationRevealPage
   >
-    <div 
-    style={{
-      backgroundColor:'#f4fbff'
-    }}
+    <div
+      style={{
+        backgroundColor: '#f4fbff'
+      }}
     >
       <Hero />
       <MainFeature2
@@ -30,6 +33,10 @@ export default () => (
       <Testimonial />
       <Form />
       <Footer />
+      <PopUp />
+      <Feedback/>
     </div>
   </AnimationRevealPage>
 );
+
+export default withRouter(HotelTravelLandingPage)

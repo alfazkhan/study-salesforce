@@ -113,13 +113,13 @@ export default function App() {
 
 
   return (
-    <Router>
+    <Router basename="/">
       <Switch>
-        <Route path="/" exact>
-          <HotelTravelLandingPage />
-        </Route>
-        <Route path="/playlist/:name">
+        <Route path="/:category/:playlist">
           <AboutUsPage />
+        </Route>
+        <Route path="/">
+          <HotelTravelLandingPage />
         </Route>
         <Route path="/components/:type/:name">
           <ComponentRenderer />

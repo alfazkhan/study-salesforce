@@ -12,7 +12,7 @@ import { ReactComponent as ChevronRightIcon } from "feather-icons/dist/icons/che
 import { ReactComponent as SvgDecoratorBlob1 } from "../../images/svg-decorator-blob-4.svg";
 import { ReactComponent as SvgDecoratorBlob2 } from "../../images/svg-decorator-blob-5.svg";
 
-import { AiOutlineInstagram, AiFillLinkedin, AiOutlineTwitter, AiOutlineWhatsApp, AiFillYoutube } from 'react-icons/ai'
+import { AiOutlineInstagram, AiFillLinkedin, AiOutlineTwitter, AiOutlineWhatsApp, AiFillYoutube, AiFillMail } from 'react-icons/ai'
 import { SiUdemy } from 'react-icons/si'
 
 import badge1 from '../../images/badges/image1.png'
@@ -20,11 +20,21 @@ import badge2 from '../../images/badges/image2.png'
 import badge3 from '../../images/badges/image3.png'
 import badge4 from '../../images/badges/image4.png'
 import badge5 from '../../images/badges/image5.png'
-import badge6 from '../../images/badges/image6.png'
+import badge6 from '../../images/badges/image6.jpg'
 import Sanjay from '../../images/Sanjay.jpg'
 
 
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
+
 import "slick-carousel/slick/slick.css";
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const Container = tw.div`relative`;
 const Content = tw.div`max-w-screen-xl mx-auto py-0 lg:py-10`;
@@ -76,10 +86,12 @@ const CustomerTitle = tw.p`font-medium text-secondary-100 text-center`;
 
 
 const SocialMediaIcons = tw.p`flex flex-row mt-10 text-primary-500 text-3xl justify-center`;
-const BadgeIcons = tw.p`flex flex-row mt-10 text-primary-500 text-3xl justify-center lg:justify-start h-12 lg:h-16`;
+const BadgeIcons = tw.p`flex flex-row mt-10 text-primary-500 text-3xl justify-center lg:justify-center h-16 lg:h-24`;
 
 const QuotesLeft = tw(QuotesLeftIcon)`w-6 h-6 opacity-75 text-primary-500 inline-block mr-1 -mt-3`;
 const QuotesRight = tw(QuotesRightIcon)`w-6 h-6 opacity-75 text-primary-500 inline-block ml-1 -mt-3`;
+
+const Link = tw.a`border-transparent hover:text-primary-800 hocus:border-gray-700 pb-1 transition duration-300`;
 
 const DecoratorBlob1 = tw(
   SvgDecoratorBlob1
@@ -128,11 +140,27 @@ export default ({
   const [imageSliderRef, setImageSliderRef] = useState(null);
   const [textSliderRef, setTextSliderRef] = useState(null);
 
+  const mobile = window.innerWidth < 768
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   return (
     <Container>
       <Content>
         {/* <HeadingInfo tw="text-center lg:hidden" subheading={subheading} description={description} /> */}
-        <Heading>About <span tw="text-primary-500">Mentor</span></Heading>
+        <Heading>About <span tw="text-primary-500">Instructor</span></Heading>
         <TestimonialsContainer>
           <Testimonials>
 
@@ -141,14 +169,16 @@ export default ({
               <TestimonialImageSlider arrows={false} ref={setImageSliderRef} asNavFor={textSliderRef} fade={true}>
                 {testimonials.map((testimonial, index) => (
                   <ImageAndControlContainer key={index}>
-                    <Image imageSrc={testimonial.imageSrc} style={{borderRadius:'50%'}} />
+                    <Image imageSrc={testimonial.imageSrc} style={{ borderRadius: '50%' }} />
                     <BadgeIcons>
-                      <img tw="mx-2" src={badge1} />
-                      <img tw="mx-2" src={badge2} />
-                      <img tw="mx-2" src={badge3} />
-                      <img tw="mx-2" src={badge4} />
-                      <img tw="mx-2" src={badge5} />
-                      <img tw="mx-2" src={badge6} />
+                      <img tw="mx-3" src={badge4} />
+                      <img tw="mx-3" src={badge1} />
+                      <img tw="mx-3" src={badge3} />
+                    </BadgeIcons>
+                    <BadgeIcons>
+                      <img tw="mx-3" src={badge5} />
+                      <img tw="mx-3" src={badge2} />
+                      <img tw="mx-3" src={badge6} />
                     </BadgeIcons>
                   </ImageAndControlContainer>
                 ))}
@@ -167,12 +197,39 @@ export default ({
                       <HeadingInfo subheading={subheading} description={description} />
 
                       <SocialMediaIcons>
-                        <AiFillLinkedin tw="mx-3 rounded" />
-                        <AiOutlineTwitter tw="mx-3" />
-                        <AiFillYoutube tw="mx-3" />
-                        <SiUdemy tw="mx-3" />
-                        <AiOutlineWhatsApp tw="mx-3" />
+                        <Link href="https://in.linkedin.com/in/sanjay-gupta-bb2a79bb" target="_0">
+                          <AiFillLinkedin tw="mx-3 rounded" />
+                        </Link>
+                        <Link href="https://api.whatsapp.com/send?phone=919829011904&text=Hi,%20I%20would%20like%20to%20ask%20about" target="_0">
+                          <AiOutlineWhatsApp tw="mx-3" />
+                        </Link>
+                        <Link
+                          href={mobile ? "mailto:tech.sanjaygupta@gmail.com" : null}
+                          onClick={() => { mobile ? console.log("") : navigator.clipboard.writeText("tech.sanjaygupta@gmail.com");handleClick(); }}
+
+                        >
+                          <AiFillMail tw="mx-3" />
+                        </Link>
+
+                        <Link href="https://twitter.com/techsanjaygupta" target="_0">
+                          <AiOutlineTwitter tw="mx-3" />
+                        </Link>
+                        <Link href="https://www.youtube.com/sanjaygupta_techschool" target="_0">
+                          <AiFillYoutube tw="mx-3" />
+                        </Link>
+                        <Link href="https://www.udemy.com/user/sanjay-gupta-354/" target="_0">
+                          <SiUdemy tw="mx-3" />
+                        </Link>
                       </SocialMediaIcons>
+
+                      <Stack spacing={2} sx={{ width: '100%' }}>
+                        <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+                          <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                            Email Copied to clipboard!
+                          </Alert>
+                        </Snackbar>
+                        </Stack>
+                        
                     </TestimonialText>
                   ))}
                 </TestimonialTextSlider>
